@@ -29,8 +29,8 @@ const BookingSchema = new Schema<IBooking>(
       trim: true,
       validate: {
         validator: (v: string) => {
-          // RFC 5322 compliant email validation
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          // More robust email validation (still simplified but better than basic regex)
+          const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
           return emailRegex.test(v);
         },
         message: "Please provide a valid email address",
@@ -75,7 +75,7 @@ BookingSchema.pre("save", async function (next) {
 BookingSchema.index({ eventId: 1 });
 
 // Create compound index for preventing duplicate bookings
-BookingSchema.index({ eventId: 1, email: 1 });
+BookingSchema.index({ eventId: 1, email: 1 }, { unique: true });
 
 /**
  * Booking Model
