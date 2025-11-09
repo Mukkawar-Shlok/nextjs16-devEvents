@@ -12,8 +12,8 @@ const page = async() => {
   const {events} = await response.json();
   return (
     <section>
-      <h1>The hub for developer events</h1>
-      <p className='text-center mt-5'>Discover and attend the latest events in your area</p>
+      <h1>The hub for anime events</h1>
+      <p className='text-center mt-5'>Discover and attend the latest anime events in your area</p>
       <ExplorerBtn />
 
       <div className="mt-20 space-y-7">

@@ -1,7 +1,8 @@
 'use server';
 
-import { Event, IEvent } from "@/database";
+import { Booking, Event, IEvent } from "@/database";
 import connectDB from "../mongodb";
+import mongoose from "mongoose";
 
 export const getSimilarEventsBySlug = async (slug: string): Promise<IEvent[]> => {
     try {
@@ -18,5 +19,16 @@ export const getSimilarEventsBySlug = async (slug: string): Promise<IEvent[]> =>
     } catch (error) {
         console.error(error);
         return [];
+    }
+}
+
+export const getBookingsByEventId = async (eventId: string): Promise<number> => {
+    try {
+        await connectDB();
+        const bookings = await Booking.countDocuments({ eventId: new mongoose.Types.ObjectId(eventId) });
+        return bookings;
+    } catch (error) {
+        console.error(error);
+        return 0;
     }
 }
