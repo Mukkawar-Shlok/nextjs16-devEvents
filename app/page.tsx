@@ -8,8 +8,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const page = async() => {
   'use cache';
   cacheLife('hours');
-  const response = await fetch(`${BASE_URL}/api/events`);
-  const {events} = await response.json();
+  // const response = await fetch(`${BASE_URL}/api/events`);
+  // const {events} = await response.json();
   return (
     <section>
       <h1>The hub for anime events</h1>
@@ -20,7 +20,7 @@ const page = async() => {
         <h3>Featured Events</h3>
 
         <ul className="events">
-          {events && events.length > 0 && events.map((event: IEvent) => (
+          {events && events.length > 0 && events.map((event) => (
               <EventCard {...event} key={event.title}/>
           ))}
         </ul>
