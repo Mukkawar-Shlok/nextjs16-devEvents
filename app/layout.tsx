@@ -3,6 +3,8 @@ import { Schibsted_Grotesk, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import LightRays from '../components/LightRays';
 import Navbar from "@/components/Navbar";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",
@@ -15,8 +17,8 @@ const martianMono = Martian_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Developer Events | HOME",
-  description: "Discover and attend the latest events in your area",
+  title: "Anime Events | HOME",
+  description: "Discover and attend the latest anime events in your area",
 };
 
 export default function RootLayout({
@@ -33,7 +35,7 @@ export default function RootLayout({
         <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
           <LightRays
             raysOrigin="top-center-offset"
-            raysColor="#00ffff"
+            raysColor="#ff6ec7"
             raysSpeed={2}
             lightSpread={1}
             rayLength={1.2}
@@ -47,6 +49,18 @@ export default function RootLayout({
         <main>
           {children}
         </main>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </body>
     </html>
   );
